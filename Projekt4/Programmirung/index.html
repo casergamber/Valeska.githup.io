@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valeska Zohm – Architektur</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#F5F2EC;--charcoal:#1C1C1A;--mid:#8C8880;--line:rgba(28,28,26,0.12)}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;font-weight:300;background:var(--cream);color:var(--charcoal);font-size:15px;line-height:1.75;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;background:rgba(245,242,236,0.92);backdrop-filter:blur(8px);border-bottom:0.5px solid var(--line)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--charcoal);text-decoration:none}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--charcoal)}
+
+#hero{position:relative;height:100vh;overflow:hidden}
+#hero img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(0.65)}
+.hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:5rem 4rem}
+.hero-eyebrow{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:1rem}
+.hero-headline{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3rem,6vw,5.5rem);line-height:1.05;color:#fff;margin-bottom:2rem}
+.hero-headline em{font-style:italic;opacity:0.7}
+.hero-rule{width:40px;height:0.5px;background:rgba(255,255,255,0.4)}
+
+section{padding:6rem 4rem;border-top:0.5px solid var(--line)}
+.section-label{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mid);margin-bottom:3rem;display:flex;align-items:center;gap:1rem}
+.section-label::after{content:'';flex:1;max-width:50px;height:0.5px;background:var(--line)}
+
+#profil .content{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.profil-img-wrap{position:relative}
+.profil-img-wrap img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;filter:grayscale(100%)}
+.profil-caption{position:absolute;bottom:1.5rem;left:1.5rem;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.7)}
+.profil-text h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.2rem;line-height:1.2;margin-bottom:1.75rem}
+.profil-text p{color:var(--mid);margin-bottom:1rem;font-size:14px}
+.vita-list{list-style:none;margin-top:2rem}
+.vita-list li{display:grid;grid-template-columns:70px 1fr;gap:1.5rem;padding:0.8rem 0;border-bottom:0.5px solid var(--line);font-size:13px}
+.vita-list li:first-child{border-top:0.5px solid var(--line)}
+.vita-year{color:var(--mid);font-size:11px;letter-spacing:0.05em;padding-top:2px}
+
+#portfolio .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+.proj-item{background:var(--cream);overflow:hidden}
+.proj-img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform 0.5s ease;display:block}
+.proj-item:hover .proj-img{transform:scale(1.04)}
+.proj-info{padding:1.5rem}
+.proj-num{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-bottom:0.5rem}
+.proj-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.3rem;color:var(--charcoal);line-height:1.3;margin-bottom:0.4rem}
+.proj-type{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid)}
+.proj-desc{font-size:12px;color:var(--mid);line-height:1.65;margin-top:0.5rem}
+
+#leistungen .grid{display:grid;grid-template-columns:repeat(3,1fr);border:0.5px solid var(--line)}
+.litem{padding:2.5rem;border-right:0.5px solid var(--line)}
+.litem:last-child{border-right:none}
+.lnum{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--line);line-height:1;margin-bottom:1rem}
+.ltitle{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--charcoal);margin-bottom:0.75rem}
+.ldesc{font-size:13px;color:var(--mid);line-height:1.75}
+
+#kontakt .content{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.kontakt-heading{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.8rem;line-height:1.15}
+.kontakt-heading em{font-style:italic;color:var(--mid)}
+.kontakt-row{display:flex;justify-content:space-between;padding:1rem 0;border-bottom:0.5px solid var(--line);font-size:14px}
+.kontakt-row:first-child{border-top:0.5px solid var(--line)}
+.klabel{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);padding-top:2px}
+.kval{color:var(--charcoal);text-align:right}
+.kval a{color:var(--charcoal);text-decoration:none;border-bottom:0.5px solid var(--line);padding-bottom:1px;transition:border-color 0.2s}
+.kval a:hover{border-color:var(--charcoal)}
+
+footer{padding:2rem 4rem;border-top:0.5px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mid);letter-spacing:0.08em}
+
+.fade{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav{padding:1.25rem 1.5rem}
+  .nav-links{gap:1.25rem}
+  section{padding:4rem 1.5rem}
+  #hero{height:80vh}
+  .hero-overlay{padding:3rem 1.5rem}
+  #profil .content,#kontakt .content{grid-template-columns:1fr;gap:3rem}
+  #portfolio .grid{grid-template-columns:1fr}
+  #leistungen .grid{grid-template-columns:1fr}
+  .litem{border-right:none;border-bottom:0.5px solid var(--line)}
+  .litem:last-child{border-bottom:none}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Valeska Zohm · Architektur</a>
+  <ul class="nav-links">
+    <li><a href="#profil">Profil</a></li>
+    <li><a href="#portfolio">Projekte</a></li>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- Ersetze den src-Pfad mit dem echten Pfad zu deinem Bild -->
+  <img src="../bilder/Bildschirmfoto%202026-04-12%20um%2020.14.18.png" alt="Krankenhausbrücke – Valeska Zohm Architektur">
+  <div class="hero-overlay">
+    <p class="hero-eyebrow fade">Architektin · München</p>
+    <h1 class="hero-headline fade" style="transition-delay:0.1s">Raum denken.<br><em>Form geben.</em></h1>
+    <div class="hero-rule fade" style="transition-delay:0.2s"></div>
+  </div>
+</section>
+
+<!-- PROFIL -->
+<section id="profil">
+  <p class="section-label">Profil</p>
+  <div class="content">
+    <div class="profil-img-wrap fade">
+      <!-- Ersetze src mit dem echten Pfad zu deinem Porträtfoto -->
+      <img src="../bilder/preview.webp" alt="Valeska Zohm, architect, portrait photograph in professional setting">
+      <span class="profil-caption">Valeska Zohm</span>
+    </div>
+    <div class="fade" style="transition-delay:0.1s">
+      <div class="profil-text">
+        <h2>Valeska Zohm<br>Architektin</h2>
+        <p>Geboren 1975 in Aachen, studierte Valeska von der Decken Architektur an der TH Kaiserslautern und schloss ihr Diplom an der renommierten RWTH Aachen ab.</p>
+        <p>Nach Stationen bei namhaften Büros – darunter eine langjährige Zusammenarbeit mit Professor Joachim Schürmann – ist sie seit 2017 als selbstständige Architektin in München tätig.</p>
+        <p>Ihre Projekte verbinden architektonische Präzision mit einem feinen Gespür für Atmosphäre, Materialität und das Leben im Raum.</p>
+      </div>
+      <ul class="vita-list">
+        <li><span class="vita-year">1975</span><span>Geboren in Aachen</span></li>
+        <li><span class="vita-year">Vordip.</span><span>TH Kaiserslautern</span></li>
+        <li><span class="vita-year">Diplom</span><span>RWTH Aachen</span></li>
+        <li><span class="vita-year">2001</span><span>Mescherowsky Architekten, Aachen</span></li>
+        <li><span class="vita-year">2002–03</span><span>JSP / jsa – Joachim Schürmann</span></li>
+        <li><span class="vita-year">2005</span><span>Partnerschaft mit Prof. Joachim Schürmann</span></li>
+        <li><span class="vita-year">2014</span><span>Selbstständig in Stuttgart</span></li>
+        <li><span class="vita-year">2017</span><span>Selbstständig in München</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <p class="section-label">Projekte</p>
+  <div class="grid">
+    <div class="proj-item fade">
+      <!-- Ersetze src mit dem echten Pfad zu deinem Bild -->
+      <img class="proj-img" src="../bilder/Bildschirmfoto%202026-04-12%20um%2020.14.18.png" alt="Krankenhausbrücke">
+      <div class="proj-info">
+        <p class="proj-num">01</p>
+        <p class="proj-title">Krankenhausbrücke</p>
+        <p class="proj-type">Öffentlicher Bau · Brückenbauwerk</p>
+        <p class="proj-desc">Entwurf und Realisierung einer gläsernen Verbindungsbrücke – Transparenz und konstruktive Präzision im Dialog mit dem Außenraum.</p>
+      </div>
+    </div>
+    <div class="proj-item fade" style="transition-delay:0.1s">
+      <img class="proj-img" src="../bilder/Bildschirmfoto%202026-04-12%20um%2020.13.57.png" alt="Scherstraße">
+      <div class="proj-info">
+        <p class="proj-num">02</p>
+        <p class="proj-title">Scherstraße</p>
+        <p class="proj-type">Wohnbau · Einfamilienhaus</p>
+        <p class="proj-desc">Sanierung und Neugestaltung eines Einfamilienhauses – behutsamer Umgang mit dem Bestand, klare zeitgemäße Haltung.</p>
+      </div>
+    </div>
+    <div class="proj-item fade" style="transition-delay:0.2s">
+      <img class="proj-img" src="../bilder/Bildschirmfoto%202026-04-12%20um%2020.14.32.png" alt="Walhallastraße München">
+      <div class="proj-info">
+        <p class="proj-num">03</p>
+        <p class="proj-title">Walhallastraße 44</p>
+        <p class="proj-type">Wohnbau · München</p>
+        <p class="proj-desc">Umbau und Erweiterung eines Münchner Wohnhauses – präzise Eingriffe, die Charakter bewahren und Raum neu denken.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+  <p class="section-label">Leistungen</p>
+  <div class="grid fade">
+    <div class="litem">
+      <div class="lnum">01</div>
+      <p class="ltitle">Entwurf & Planung</p>
+      <p class="ldesc">Konzeption und Entwurf vom ersten Gedanken bis zum genehmigungsfähigen Plan – individuell und präzise.</p>
+    </div>
+    <div class="litem">
+      <div class="lnum">02</div>
+      <p class="ltitle">Bauleitung</p>
+      <p class="ldesc">Begleitung und Steuerung der Ausführung – mit Blick für Qualität, Termine und Kosten.</p>
+    </div>
+    <div class="litem">
+      <div class="lnum">03</div>
+      <p class="ltitle">Beratung & Sanierung</p>
+      <p class="ldesc">Fachkundige Beratung zu Umbau, Erweiterung und Sanierung von Bestandsgebäuden.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <p class="section-label">Kontakt</p>
+  <div class="content">
+    <div class="fade">
+      <h2 class="kontakt-heading">Gemeinsam<br><em>etwas</em><br>entstehen lassen.</h2>
+    </div>
+    <div class="fade" style="transition-delay:0.1s">
+      <div class="kontakt-row">
+        <span class="klabel">Adresse</span>
+        <span class="kval">Walhallastr. 44<br>80639 München</span>
+      </div>
+      <div class="kontakt-row">
+        <span class="klabel">Telefon</span>
+        <span class="kval"><a href="tel:+491778385529">+49 177 838 55 29</a></span>
+      </div>
+      <div class="kontakt-row">
+        <span class="klabel">E-Mail</span>
+        <span class="kval"><a href="mailto:valeska.zohm@yahoo.com">valeska.zohm@yahoo.com</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Valeska Zohm Architektur, München</span>
+  <span>vz-architektur.org</span>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})
+},{threshold:0.08});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
